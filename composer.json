@@ -1,0 +1,28 @@
+{
+  "name": "lushdigital/microservice-crud",
+  "description": "A CRUD convenience layer for microservices built in Lumen.",
+  "keywords": ["framework", "laravel", "lumen", "microservice", "crud"],
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Dan Richards",
+      "email": "dan.richards@lush.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "laravel/lumen-framework": "~5.0",
+    "lushdigital/microservice-core": "~0.2",
+    "lushdigital/microservice-model-utils": "~0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "LushDigital\\MicroServiceCrud\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
