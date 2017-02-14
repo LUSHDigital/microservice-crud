@@ -29,14 +29,14 @@ use LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel;
 class Example extends MicroServiceBaseModel {}
 ```
 
-Next you need to create a controller which extends from `\LushDigital\MicroServiceCrud\HttpHttp\Controllers\CrudController`
+Next you need to create a controller which extends from `\LushDigital\MicroServiceCrud\Http\Controllers\CrudController`
 
 ```php
 <?php 
 
 namespace App\Http\Controllers;
 
-use LushDigital\MicroServiceCrud\HttpHttp\Controllers\CrudController;
+use LushDigital\MicroServiceCrud\Http\Controllers\CrudController;
 
 class ExamplesController extends CrudController {}
 ```
@@ -46,14 +46,14 @@ Note that above the model is called `Example` and the controller is called `Exam
 plural pattern you're used to with Laravel. Basically the controller name needs to be the plural version of the model
 plus 'Controller'.
 
-This can be changed by overriding the `$model` attribute in the controller:
+This can be changed by overriding the `$modelBaseClass` attribute in the controller:
 
 ```php
 <?php 
 
 namespace App\Http\Controllers;
 
-use LushDigital\MicroServiceCrud\HttpHttp\Controllers\CrudController;
+use LushDigital\MicroServiceCrud\Http\Controllers\CrudController;
 
 class ExamplesController extends CrudController 
 {
@@ -62,19 +62,30 @@ class ExamplesController extends CrudController
      * 
      * @var string  
      */
-    protected $model = 'NotAnExample';
+    protected $modelBaseClass = 'NotAnExample';
 }
 ```
 
 ### Model Namespace
 The CRUD controller assumes the model exists in the `App\Models` namespace (e.g. `App\Controllers\ExamplesController => App\Models\Example`).
 
-This can be changed by overriding the `getModelNamespace` function:
+This can be changed by overriding the `$modelNamespace` attribute:
 
 ```php
-public function getModelNamespace()
+<?php 
+
+namespace App\Http\Controllers;
+
+use LushDigital\MicroServiceCrud\Http\Controllers\CrudController;
+
+class ExamplesController extends CrudController 
 {
-    return 'My\\Awesome\\Namespace';
+    /**
+     * The model associated with the CRUD controller.
+     * 
+     * @var string  
+     */
+    protected $modelNamespace = 'My\\Awesome\\Namespace';
 }
 ```
 
