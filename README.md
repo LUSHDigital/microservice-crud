@@ -16,7 +16,7 @@ Install the package as normal:
 $ composer require lushdigital/microservice-crud
 ```
 
-The package requires that the following changes are made to the Lumen config in `app/bootstrap.php`
+The package requires that the following changes are made to the Lumen config in `bootstrap/app.php`
 
 ```php
 <?php
@@ -92,6 +92,12 @@ class AppServiceProvider extends ServiceProvider
         Example::observe(CrudObserver::class);
     }
 }
+```
+
+Make sure that your service provider is added (or uncommented) in `bootstrap/app.php`:
+
+```php
+$app->register(App\Providers\AppServiceProvider::class);
 ```
 
 ### Model
