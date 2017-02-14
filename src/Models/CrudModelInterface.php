@@ -21,6 +21,8 @@ interface CrudModelInterface
      * @param int|null $primaryKeyValue
      *   The value of the primary key (usually ID) for the instance. Optional.
      * @return array
+     *
+     * @see https://laravel.com/docs/master/validation
      */
     public function getValidationRules($mode = 'create', $primaryKeyValue = null);
 }

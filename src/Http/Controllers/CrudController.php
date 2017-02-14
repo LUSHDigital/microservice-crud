@@ -95,14 +95,15 @@ abstract class CrudController extends BaseController
      */
     public function store(Request $request)
     {
+        // Instantiate a new model item.
+        $modelClass = $this->getModelClass();
+        $item = new $modelClass;
+
         // Validate the request.
-        $validationRules = call_user_func(array($this->getModelClass(), 'getValidationRules'));
-        $this->validate($request, $validationRules);
+        $this->validate($request, $item->getValidationRules());
 
         // Create the new item.
         $itemData = $request->all();
-        $modelClass = $this->getModelClass();
-        $item = new $modelClass;
         $item->fill($itemData);
         $item->save();
 
@@ -139,8 +140,7 @@ abstract class CrudController extends BaseController
         $item = call_user_func(array($this->getModelClass(), 'findOrFail'), $id);
 
         // Validate the request.
-        $validationRules = call_user_func(array($this->getModelClass(), 'getValidationRules'), 'update', $id);
-        $this->validate($request, $validationRules);
+        $this->validate($request, $item->getValidationRules('update', $id));
         $itemData = $request->all();
 
         // Update the item.

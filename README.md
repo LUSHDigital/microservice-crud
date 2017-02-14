@@ -32,7 +32,8 @@ $app->configure('database');
 ```
 
 ## Usage
-To create a new CRUD resource first extend your model from `\LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel`
+To create a new CRUD resource first extend your model from `\LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel`.
+The model must also implement the `LushDigital\MicroServiceCrud\Models\CrudModelInterface` interface.
 
 ```php
 <?php 
@@ -40,8 +41,18 @@ To create a new CRUD resource first extend your model from `\LushDigital\MicroSe
 namespace App\Models;
 
 use LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel;
+use LushDigital\MicroServiceCrud\Models\CrudModelInterface;
 
-class Example extends MicroServiceBaseModel {}
+class Example extends MicroServiceBaseModel implements CrudModelInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getValidationRules($mode = 'create', $primaryKeyValue = null)
+    {
+        // TODO: Implement getValidationRules() method.
+    }
+}
 ```
 
 Next you need to create a controller which extends from `\LushDigital\MicroServiceCrud\Http\Controllers\CrudController`
