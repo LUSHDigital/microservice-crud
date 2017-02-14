@@ -21,4 +21,14 @@ class ExamplesController extends CrudController
      * @var string
      */
     protected $modelNamespace = 'LushDigital\\MicroServiceCrud\\Tests\\Models';
+
+    /**
+     * Get the model table name.
+     *
+     * @return mixed|string
+     */
+    public function getModelTableName()
+    {
+        return $this->modelTableName;
+    }
 }

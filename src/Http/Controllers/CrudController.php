@@ -24,6 +24,13 @@ abstract class CrudController extends BaseController
     use MicroServiceJsonResponseTrait;
 
     /**
+     * Fully qualified name of the expected base model class.
+     *
+     * @var string
+     */
+    const MICROSERVICE_BASE_MODEL_CLASS = 'LushDigital\\MicroServiceModelUtils\\Models\\MicroServiceBaseModel';
+
+    /**
      * The base class of the model related to this CRUD controller.
      *
      * @var string
@@ -51,15 +58,8 @@ abstract class CrudController extends BaseController
      */
     public function __construct()
     {
-        // Validate the expected model exists.
-        if (!class_exists($this->getModelClass())) {
-            throw new CrudModelException('The related model does not exist.');
-        }
-
-        // Validate the model extends the correct base model.
-        if (!is_subclass_of($this->getModelClass(), 'MicroServiceBaseModel')) {
-            throw new CrudModelException('The related model must extend the MicroServiceBaseModel abstract class.');
-        }
+        // Validate the model class.
+        $this->validateModelClass($this->getModelClass());
 
         // Get the expected model table name.
         $this->modelTableName = call_user_func(array($this->getModelClass(), 'getTableName'));
@@ -162,10 +162,16 @@ abstract class CrudController extends BaseController
      * Get the fully qualified class of the model related to this controller.
      *
      * @return string
+     * @throws CrudModelException
      */
     public function getModelClass()
     {
-        return $this->getModelNamespace() . '\\' . $this->getModelBaseClass();
+        $model = $this->getModelNamespace() . '\\' . $this->getModelBaseClass();
+
+        // Validate the model class.
+        $this->validateModelClass($model);
+
+        return $model;
     }
 
     /**
@@ -213,5 +219,26 @@ abstract class CrudController extends BaseController
         $rules = [];
 
         return $rules;
+    }
+
+    /**
+     * Validate a model class name.
+     *
+     * @param $modelClass
+     *
+     * @return void
+     * @throws CrudModelException
+     */
+    protected function validateModelClass($modelClass)
+    {
+        // Validate the expected model exists.
+        if (!class_exists($modelClass)) {
+            throw new CrudModelException('The related model does not exist.');
+        }
+
+        // Validate the model extends the correct base model.
+        if (!is_subclass_of($modelClass, self::MICROSERVICE_BASE_MODEL_CLASS)) {
+            throw new CrudModelException('The related model must extend the MicroServiceBaseModel abstract class.');
+        }
     }
 }
