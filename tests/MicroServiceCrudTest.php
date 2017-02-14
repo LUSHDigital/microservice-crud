@@ -9,6 +9,7 @@ namespace LushDigital\MicroServiceCrud\Tests;
 use LushDigital\MicroServiceCrud\Exceptions\CrudModelException;
 use LushDigital\MicroServiceCrud\Tests\Http\Controllers\ExamplesController;
 use LushDigital\MicroServiceCrud\Tests\Http\Controllers\FoosController;
+use LushDigital\MicroServiceCrud\Tests\Http\Controllers\BarsController;
 use LushDigital\MicroServiceCrud\Tests\Http\Controllers\NoModelController;
 use LushDigital\MicroServiceCrud\Tests\Http\Controllers\NotesController;
 
@@ -69,14 +70,25 @@ class MicroServiceCrudTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the incorrect base model associated with a controller.
+     * Test a model with an incorrect base class associated with a controller.
      */
-    public function testIncorrectBaseModel()
+    public function testIncorrectModelBaseClass()
     {
         $this->expectException(CrudModelException::class);
         $this->expectExceptionMessage('The related model must extend the MicroServiceBaseModel abstract class.');
 
         new FoosController();
+    }
+
+    /**
+     * Test a model with an incorrect interface associated with a controller.
+     */
+    public function testIncorrectModelInterface()
+    {
+        $this->expectException(CrudModelException::class);
+        $this->expectExceptionMessage('The related model must implement CrudModelInterface.');
+
+        new BarsController();
     }
 
     /**

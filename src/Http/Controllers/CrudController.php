@@ -31,6 +31,13 @@ abstract class CrudController extends BaseController
     const MICROSERVICE_BASE_MODEL_CLASS = 'LushDigital\\MicroServiceModelUtils\\Models\\MicroServiceBaseModel';
 
     /**
+     * Fully qualified name of the expected crud model interface.
+     *
+     * @var string
+     */
+    const MICROSERVICE_CRUD_MODEL_INTERFACE = 'LushDigital\\MicroServiceCrud\\Models\\CrudModelInterface';
+
+    /**
      * The base class of the model related to this CRUD controller.
      *
      * @var string
@@ -89,10 +96,11 @@ abstract class CrudController extends BaseController
     public function store(Request $request)
     {
         // Validate the request.
-        $this->validate($request, $this->getValidationRules());
-        $itemData = $request->all();
+        $validationRules = call_user_func(array($this->getModelClass(), 'getValidationRules'));
+        $this->validate($request, $validationRules);
 
         // Create the new item.
+        $itemData = $request->all();
         $modelClass = $this->getModelClass();
         $item = new $modelClass;
         $item->fill($itemData);
@@ -131,7 +139,8 @@ abstract class CrudController extends BaseController
         $item = call_user_func(array($this->getModelClass(), 'findOrFail'), $id);
 
         // Validate the request.
-        $this->validate($request, $this->getValidationRules('update', $id));
+        $validationRules = call_user_func(array($this->getModelClass(), 'getValidationRules'), 'update', $id);
+        $this->validate($request, $validationRules);
         $itemData = $request->all();
 
         // Update the item.
@@ -205,23 +214,6 @@ abstract class CrudController extends BaseController
     }
 
     /**
-     * Get the validation rules to apply to an item create/update.
-     *
-     * @param string $mode
-     * @param int|null $id
-     * @return array
-     */
-    protected function getValidationRules($mode = 'create', $id = null)
-    {
-        // TODO: Refactor to pull validation rules from the model.
-
-        // Default validation rules.
-        $rules = [];
-
-        return $rules;
-    }
-
-    /**
      * Validate a model class name.
      *
      * @param $modelClass
@@ -239,6 +231,11 @@ abstract class CrudController extends BaseController
         // Validate the model extends the correct base model.
         if (!is_subclass_of($modelClass, self::MICROSERVICE_BASE_MODEL_CLASS)) {
             throw new CrudModelException('The related model must extend the MicroServiceBaseModel abstract class.');
+        }
+
+        // Validate the model implements the correct interface.
+        if (!in_array(self::MICROSERVICE_CRUD_MODEL_INTERFACE, class_implements($modelClass))) {
+            throw new CrudModelException('The related model must implement CrudModelInterface.');
         }
     }
 }

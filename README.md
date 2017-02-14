@@ -16,6 +16,21 @@ Install the package as normal:
 $ composer require lushdigital/microservice-crud
 ```
 
+The package requires that the following changes are made to the Lumen config in `app/bootstrap.php`
+
+```php
+<?php
+
+// Uncomment the line below to enable Facade support.
+$app->withFacades();
+
+// Uncomment the line below to enable Eloquent ORM support.
+$app->withEloquent();
+
+// Add the line below to load database config. This is required for caching to work.
+$app->configure('database');
+```
+
 ## Usage
 To create a new CRUD resource first extend your model from `\LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel`
 
@@ -122,3 +137,18 @@ class Example extends MicroServiceBaseModel
 ```
 
 > So in this cache Example (ID: 1) with a name of 'test' would have a cache key of `examples:name:test`
+
+### Routing
+Once your controller and model are set up you need to configure routes. The package provides logic for the standard REST
+endpoints (GET, POST, PUT, DELETE). You can use as many or as few as you like, an example of all routes would be:
+
+```php
+<?php
+
+// routes/web.php
+$app->get('/examples', 'ExamplesController@index');
+$app->post('/examples', 'ExamplesController@store');
+$app->get('/examples/{id}', 'ExamplesController@show');
+$app->put('/examples/{id}', 'ExamplesController@update');
+$app->delete('/examples/{id}', 'ExamplesController@destroy');
+```
