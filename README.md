@@ -67,6 +67,33 @@ use LushDigital\MicroServiceCrud\Http\Controllers\CrudController;
 class ExamplesController extends CrudController {}
 ```
 
+Finally if you are using caching you need to register the Crud observer against your model. Do this by editing the
+existing `app/Providers/AppServiceProvider.php` class (or add a new service provider) like so:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use App\Models\Example;
+use Illuminate\Support\ServiceProvider;
+use LushDigital\MicroServiceCrud\Observers\CrudObserver;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // Add an observer to the example model.
+        Example::observe(CrudObserver::class);
+    }
+}
+```
+
 ### Model
 Note that above the model is called `Example` and the controller is called `ExamplesController`. This follows the
 plural pattern you're used to with Laravel. Basically the controller name needs to be the plural version of the model
