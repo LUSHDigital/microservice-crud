@@ -69,7 +69,7 @@ abstract class CrudController extends BaseController
         $this->validateModelClass($this->getModelClass());
 
         // Get the expected model table name.
-        $this->modelTableName = call_user_func(array($this->getModelClass(), 'getTableName'));
+        $this->modelTableName = call_user_func([$this->getModelClass(), 'getTableName']);
     }
 
     /**
@@ -81,7 +81,7 @@ abstract class CrudController extends BaseController
     {
         // Check the cache for data. Otherwise get from the db.
         $items = Cache::rememberForever($this->modelTableName . ':index', function () {
-            return call_user_func(array($this->getModelClass(), 'all'))->toArray();
+            return call_user_func([$this->getModelClass(), 'all'])->toArray();
         });
 
         return $this->generateResponse($this->modelTableName, $items);
@@ -107,7 +107,7 @@ abstract class CrudController extends BaseController
         $item->fill($itemData);
         $item->save();
 
-        $newItem = call_user_func(array($this->getModelClass(), 'find'), $item->id)->toArray();
+        $newItem = call_user_func([$this->getModelClass(), 'find'], $item->id)->toArray();
         return $this->generateResponse($this->modelTableName, [$newItem]);
     }
 
@@ -121,7 +121,7 @@ abstract class CrudController extends BaseController
     {
         // Check the cache for item data. Otherwise get from the db.
         $item = Cache::rememberForever($this->modelTableName . ':' . $id, function () use ($id) {
-            return call_user_func(array($this->getModelClass(), 'findOrFail'), $id)->toArray();
+            return call_user_func([$this->getModelClass(), 'findOrFail'], $id)->toArray();
         });
 
         return $this->generateResponse($this->modelTableName, [$item]);
@@ -137,7 +137,7 @@ abstract class CrudController extends BaseController
     public function update(Request $request, $id)
     {
         // Get the item.
-        $item = call_user_func(array($this->getModelClass(), 'findOrFail'), $id);
+        $item = call_user_func([$this->getModelClass(), 'findOrFail'], $id);
 
         // Validate the request.
         $this->validate($request, $item->getValidationRules('update', $id));
@@ -159,7 +159,7 @@ abstract class CrudController extends BaseController
     public function destroy($id)
     {
         // Get the item.
-        $item = call_user_func(array($this->getModelClass(), 'findOrFail'), $id);
+        $item = call_user_func([$this->getModelClass(), 'findOrFail'], $id);
 
         // Delete the item.
         $item->delete();
