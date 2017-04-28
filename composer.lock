@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc2b56a5c5f8e6870ca10fb139ab1752",
+    "content-hash": "07fa8cfe11412a70fe66c01b07e32cbe",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1216,16 +1216,16 @@
         },
         {
             "name": "lushdigital/microservice-core",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LUSHDigital/microservice-core.git",
-                "reference": "6df60b6db5c98a8fa977e0c6116b01a69127d5e5"
+                "reference": "ec93d60f45b26ddb7e28e5e56761688308741627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LUSHDigital/microservice-core/zipball/6df60b6db5c98a8fa977e0c6116b01a69127d5e5",
-                "reference": "6df60b6db5c98a8fa977e0c6116b01a69127d5e5",
+                "url": "https://api.github.com/repos/LUSHDigital/microservice-core/zipball/ec93d60f45b26ddb7e28e5e56761688308741627",
+                "reference": "ec93d60f45b26ddb7e28e5e56761688308741627",
                 "shasum": ""
             },
             "require": {
@@ -1258,24 +1258,24 @@
                 "laravel",
                 "lumen"
             ],
-            "time": "2017-04-10T16:20:07+00:00"
+            "time": "2017-04-12T11:27:47+00:00"
         },
         {
             "name": "lushdigital/microservice-model-utils",
-            "version": "v0.2.3",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LUSHDigital/microservice-model-utils.git",
-                "reference": "cb2baac9429cde02a14001fcc3c558d1e79804f2"
+                "reference": "a0c531bf7c6659bdae59c6d4318651755bb9f9ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LUSHDigital/microservice-model-utils/zipball/cb2baac9429cde02a14001fcc3c558d1e79804f2",
-                "reference": "cb2baac9429cde02a14001fcc3c558d1e79804f2",
+                "url": "https://api.github.com/repos/LUSHDigital/microservice-model-utils/zipball/a0c531bf7c6659bdae59c6d4318651755bb9f9ba",
+                "reference": "a0c531bf7c6659bdae59c6d4318651755bb9f9ba",
                 "shasum": ""
             },
             "require": {
-                "laravel/lumen-framework": "~5.0",
+                "laravel/lumen-framework": "5.3.*",
                 "php": ">=5.6.4"
             },
             "require-dev": {
@@ -1304,7 +1304,7 @@
                 "laravel",
                 "lumen"
             ],
-            "time": "2017-03-03T17:16:01+00:00"
+            "time": "2017-04-28T13:17:25+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1743,12 +1743,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "c4556af177973c51806894cb6e56e206698132d6"
+                "reference": "73ccae57d5a439a9debf34e3f9bec78b56241949"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/c4556af177973c51806894cb6e56e206698132d6",
-                "reference": "c4556af177973c51806894cb6e56e206698132d6",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/73ccae57d5a439a9debf34e3f9bec78b56241949",
+                "reference": "73ccae57d5a439a9debf34e3f9bec78b56241949",
                 "shasum": ""
             },
             "require": {
@@ -1798,7 +1798,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-04 07:47:41"
+            "time": "2017-04-13 13:45:25"
         },
         {
             "name": "symfony/finder",
@@ -2214,16 +2214,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -2252,7 +2252,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-04-12T18:52:22+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2718,12 +2718,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
+                "reference": "e22c131386168fcc045104e2de2d82708d12c855"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
-                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e22c131386168fcc045104e2de2d82708d12c855",
+                "reference": "e22c131386168fcc045104e2de2d82708d12c855",
                 "shasum": ""
             },
             "require": {
@@ -2792,7 +2792,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-04-03 02:22:27"
+            "time": "2017-04-25T10:39:19+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3029,7 +3029,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.0"
@@ -3372,12 +3372,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440"
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/192c21118ef5ea3c45e9982c81a718f629643440",
-                "reference": "192c21118ef5ea3c45e9982c81a718f629643440",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e389c47ccde1cc76d3598a3d10afa6edee355690",
+                "reference": "e389c47ccde1cc76d3598a3d10afa6edee355690",
                 "shasum": ""
             },
             "require": {
@@ -3419,7 +3419,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-10 06:31:22"
+            "time": "2017-04-12T20:43:31+00:00"
         },
         {
             "name": "webmozart/assert",

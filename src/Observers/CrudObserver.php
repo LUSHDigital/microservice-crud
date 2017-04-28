@@ -6,7 +6,7 @@
 
 namespace LushDigital\MicroServiceCrud\Observers;
 
-use LushDigital\MicroServiceModelUtils\Models\MicroServiceBaseModel;
+use LushDigital\MicroServiceModelUtils\Contracts\Cacheable;
 use LushDigital\MicroServiceModelUtils\Traits\MicroServiceCacheTrait;
 
 /**
@@ -21,10 +21,10 @@ class CrudObserver
     /**
      * Listen to the model saved event.
      *
-     * @param MicroServiceBaseModel $model
+     * @param Cacheable $model
      * @return void
      */
-    public function saved(MicroServiceBaseModel $model)
+    public function saved(Cacheable $model)
     {
         $this->cacheForget($model);
     }
@@ -32,10 +32,10 @@ class CrudObserver
     /**
      * Listen to the model deleted event.
      *
-     * @param MicroServiceBaseModel $model
+     * @param Cacheable $model
      * @return void
      */
-    public function deleted(MicroServiceBaseModel $model)
+    public function deleted(Cacheable $model)
     {
         $this->cacheForget($model);
     }
