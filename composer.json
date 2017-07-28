@@ -12,8 +12,8 @@
   ],
   "require": {
     "php": ">=5.6.4",
-    "laravel/lumen-framework": "5.3.*",
-    "lushdigital/microservice-core": "~0.3",
+    "laravel/lumen-framework": "^5.3",
+    "lushdigital/microservice-core": "~1.0",
     "lushdigital/microservice-model-utils": "~1.0"
   },
   "require-dev": {

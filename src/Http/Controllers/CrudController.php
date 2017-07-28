@@ -164,7 +164,7 @@ abstract class CrudController extends BaseController
         // Delete the item.
         $item->delete();
 
-        return $this->generateResponse('', null, 200, 'ok', 'Item was deleted successfully.');
+        return $this->generateResponse($this->modelTableName, null, 200, 'ok', 'Item was deleted successfully.');
     }
 
     /**
