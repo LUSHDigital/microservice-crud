@@ -84,6 +84,10 @@ abstract class CrudController extends BaseController
             return call_user_func([$this->getModelClass(), 'all'])->toArray();
         });
 
+        if (empty($items)) {
+            return $this->generateResponse($this->modelTableName, null, Response::HTTP_NO_CONTENT);
+        }
+
         return $this->generateResponse($this->modelTableName, $items);
     }
 
