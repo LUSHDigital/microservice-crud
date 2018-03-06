@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use LushDigital\MicroServiceCore\Enum\Status;
 use LushDigital\MicroServiceCrud\Exceptions\CrudModelException;
 use LushDigital\MicroServiceCore\Traits\MicroServiceJsonResponseTrait;
 
@@ -112,7 +113,7 @@ abstract class CrudController extends BaseController
         $item->save();
 
         $newItem = call_user_func([$this->getModelClass(), 'find'], $item->id)->toArray();
-        return $this->generateResponse($this->modelTableName, [$newItem]);
+        return $this->generateResponse($this->modelTableName, $newItem);
     }
 
     /**
@@ -128,7 +129,7 @@ abstract class CrudController extends BaseController
             return call_user_func([$this->getModelClass(), 'findOrFail'], $id)->toArray();
         });
 
-        return $this->generateResponse($this->modelTableName, [$item]);
+        return $this->generateResponse($this->modelTableName, $item);
     }
 
     /**
@@ -151,7 +152,7 @@ abstract class CrudController extends BaseController
         $item->fill($itemData);
         $item->save();
 
-        return $this->generateResponse($this->modelTableName, [$item->toArray()]);
+        return $this->generateResponse($this->modelTableName, $item->toArray());
     }
 
     /**
@@ -168,7 +169,7 @@ abstract class CrudController extends BaseController
         // Delete the item.
         $item->delete();
 
-        return $this->generateResponse($this->modelTableName, null, 200, 'ok', 'Item was deleted successfully.');
+        return $this->generateResponse($this->modelTableName, null, Response::HTTP_OK, Status::OK, 'Item was deleted successfully.');
     }
 
     /**
